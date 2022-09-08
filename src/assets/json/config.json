@@ -1,0 +1,11 @@
+{
+    "tema" : {
+        "opcoes": ["Numeros", "Icones"]
+    },
+    "jogadores": {
+        "opcoes": [1, 2, 3, 4]
+    },
+    "tamanho": {
+        "opcoes": ["4x4", "6x6"]
+    }
+}

@@ -1,0 +1,82 @@
+import { defineStore } from 'pinia'
+import config from '@/assets/json/config.json'
+
+export const useArmazenar = defineStore({
+    id: "armazenar",
+
+    state: () => ({
+        jogoConfig: {
+            tema: 0,
+            jogadores: 0,
+            tamanho: 0
+        },
+        config: config,
+        jogoIniciado: false,
+        reiniciando: false,
+        jogoInstancia: {},
+        tempo: null,
+        movelMenu: false
+    }),
+
+    getters: {
+        ehMultiJogador: (state) => state.jogoInstancia?.pontuacoes?.length > 1,
+        getGradeTamanho: (state) => 
+           Number(state.config?.tamanho?.opcoes[state.jogoConfig.tamanho].split("x")[0]),
+    },
+    actions: {
+        iniciarJogo() {
+
+            const pontuacoes = () => {
+                const pontuacoes = []
+
+                for(let i = 0; i <= this.jogoConfig.jogadores; i++) {
+                    pontuacoes.push(0)
+                }
+                return pontuacoes
+            }
+            const grade = () => {
+                let grade = []
+                let numeros = []
+
+                if (this.jogoConfig.tamanho === 0) {
+                    
+                    for(let i = 1; i <= Math.pow(this.getGradeTamanho, 2) / 2; i++) {
+                        numeros.push(i, i)
+                    }
+                } else {
+                    for(let i = 1; i <= Math.pow(this.getGradeTamanho, 2) / 4; i++) {
+                        numeros.push(i, i, i, i)
+                    }
+                }
+                numeros.sort(() => 0.5 - Math.random())
+                grade = numeros 
+
+                return grade
+            }
+            this.definirInstanciaJogo({ pontuacoes: pontuacoes(), grade: grade() })
+            this.jogoIniciado = true 
+
+        },
+        definirInstanciaJogo({
+            tema = this.tema,
+            pontuacoes,
+            tamanho = this.tamanho,
+            grade  =   this.grade,
+            rodada = 0,
+            resolvida = [],
+            tempo = 0,
+            selecionarPar = [],
+        }) {
+            this.jogoInstancia = {
+                tema: tema,
+                pontuacoes: pontuacoes,
+                tamanho: tamanho,
+                grade: grade,
+                rodada: rodada,
+                resolvida: resolvida,
+                tempo: tempo,
+                selecionarPar: selecionarPar
+            }
+        }
+    }
+})
