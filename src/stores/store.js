@@ -25,7 +25,6 @@ export const useArmazenar = defineStore({
     },
     actions: {
         iniciarJogo() {
-
             const pontuacoes = () => {
                 const pontuacoes = []
                 for(let i = 0; i <= this.jogoConfig.jogadores; i++) {
@@ -51,6 +50,7 @@ export const useArmazenar = defineStore({
             }
             this.definirInstanciaJogo({ pontuacoes: pontuacoes(), grade: grade() })
             this.jogoIniciado = true
+            console.log(this.jogoIniciado);
             this.retomarJogo()
 
         },
@@ -79,7 +79,7 @@ export const useArmazenar = defineStore({
             theme = this.theme,
             pontuacoes,
             tamanho = this.tamanho,
-            grade  =   this.grade,
+            grade = this.grade,
             rodada = 0,
             resolvida = [],
             tempo = 0,

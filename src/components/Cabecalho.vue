@@ -2,7 +2,7 @@
     <header class="flex justify-between items-center">
         <h1 class="text-2x1 font-bold sm-text-4x1">Memória</h1>
         <div class="sm:hidden">
-            <BtnPrimario class="px-8">Menu</BtnPrimario>
+            <BtnPrimario class="px-8" @click="cliqueMovel">Menu</BtnPrimario>
             <MenuMovelPagina v-if="armazenar.menuMovel && armazenar.jogoIniciado" />
         </div>
         <div class="hidden sm:flex sm:text-xl sm-gap-4">
@@ -26,6 +26,10 @@ const reiniciar = () => {
 
 const novo = () => {
     armazenar.novoJogo()
+}
+
+const cliqueMovel = () => {
+    armazenar.menuMovel = true
 }
 
 </script>

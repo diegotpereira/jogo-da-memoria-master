@@ -14,7 +14,7 @@
 <script setup>
 import CabecalhoPagina from '@/components/Cabecalho.vue'
 import MenuPrincipalPagina from './components/MenuPrincipal.vue'
-import MemoriaJogoPagina from './components/MenuPrincipal.vue'
+import MemoriaJogoPagina from './components/MemoriaJogo.vue'
 
 import { useArmazenar } from '@/stores/store'
 

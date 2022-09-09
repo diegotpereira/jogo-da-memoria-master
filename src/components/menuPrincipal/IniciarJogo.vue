@@ -3,7 +3,7 @@
         <div class="pb-4 flex flex-col gap-5 sm:gap-7">
             <div>
                 <h2 class="text-title font-bold pb-2 sm:text-xl sm:pb-4">Selecione Tema</h2>
-                <SelecaoPagina class="gap-2.5 sm:gap-8 sm:text-2xl"  :opcoes="config.theme.opcoes" :state="jogoConfig.theme" @update:state="atualizarTema" />
+                <SelecaoPagina class="gap-2.5 sm:gap-8 sm:text-2xl" :opcoes="config.theme.opcoes" :state="jogoConfig.theme" @update:state="atualizarTema" />
             </div>
             <div>
                 <h2 class="text-title font-bold pb-2 sm:text-xl sm:pb-4">Número Jogadores</h2>
