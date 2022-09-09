@@ -4,7 +4,7 @@
         :style="[`gridTemplateColumns: repeat(${armazenar.getGradeTamanho}, 1fr)`]">
             <CartaoPagina class="font-bold" @click="selecionarCartao(index)" :selected="armazenar.jogoInstancia?.selecionarPar?.includes(index)"
                :solved="armazenar.jogoInstancia?.solved?.includes(index)" v-for="(item, index) in armazenar.jogoInstancia.grade" :key="index">
-                <p v-if="armazenar.jogoConfig.tema === 0" :class="armazenar.reiniciando ? 'hidden' : '' ">
+                <p v-if="armazenar.jogoConfig.theme === 0" :class="armazenar.reiniciando ? 'hidden' : '' ">
                     {{ item }}
                 </p>
                 <i class="fa-solid" :class="[jogo.reiniciando ? 'hidden' : '', icons[item]]"></i>

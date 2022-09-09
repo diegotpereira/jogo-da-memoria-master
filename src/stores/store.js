@@ -6,7 +6,7 @@ export const useArmazenar = defineStore({
 
     state: () => ({
         jogoConfig: {
-            tema: 0,
+            theme: 0,
             jogadores: 0,
             tamanho: 0
         },
@@ -76,7 +76,7 @@ export const useArmazenar = defineStore({
             }, 1000)
         },
         definirInstanciaJogo({
-            tema = this.tema,
+            theme = this.theme,
             pontuacoes,
             tamanho = this.tamanho,
             grade  =   this.grade,
@@ -86,7 +86,7 @@ export const useArmazenar = defineStore({
             selecionarPar = [],
         }) {
             this.jogoInstancia = {
-                tema: tema,
+                theme: theme,
                 pontuacoes: pontuacoes,
                 tamanho: tamanho,
                 grade: grade,
