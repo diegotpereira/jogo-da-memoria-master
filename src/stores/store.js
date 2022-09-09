@@ -14,8 +14,8 @@ export const useArmazenar = defineStore({
         jogoIniciado: false,
         reiniciando: false,
         jogoInstancia: {},
-        tempo: null,
-        movelMenu: false
+        temporizador: null,
+        menuMovel: false
     }),
 
     getters: {
@@ -28,7 +28,6 @@ export const useArmazenar = defineStore({
 
             const pontuacoes = () => {
                 const pontuacoes = []
-
                 for(let i = 0; i <= this.jogoConfig.jogadores; i++) {
                     pontuacoes.push(0)
                 }
@@ -37,9 +36,7 @@ export const useArmazenar = defineStore({
             const grade = () => {
                 let grade = []
                 let numeros = []
-
                 if (this.jogoConfig.tamanho === 0) {
-                    
                     for(let i = 1; i <= Math.pow(this.getGradeTamanho, 2) / 2; i++) {
                         numeros.push(i, i)
                     }
@@ -50,12 +47,33 @@ export const useArmazenar = defineStore({
                 }
                 numeros.sort(() => 0.5 - Math.random())
                 grade = numeros 
-
                 return grade
             }
             this.definirInstanciaJogo({ pontuacoes: pontuacoes(), grade: grade() })
-            this.jogoIniciado = true 
+            this.jogoIniciado = true
+            this.retomarJogo()
 
+        },
+        reiniciarJogo() {
+            this.pausarJogo()
+            this.iniciarJogo()
+            this.reiniciando = true 
+            setTimeout(() => {
+                this.reiniciando = false
+            }, 500)
+        },
+
+        novoJogo() {
+            clearTimeout(this.temporizador)
+            this.$reset()
+        },
+        pausarJogo() {
+            clearTimeout(this.temporizador)
+        },
+        retomarJogo() {
+            this.temporizador = setInterval(() => {
+                this.jogoInstancia.tempo += 1
+            }, 1000)
         },
         definirInstanciaJogo({
             tema = this.tema,
