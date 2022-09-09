@@ -50,7 +50,6 @@ export const useArmazenar = defineStore({
             }
             this.definirInstanciaJogo({ pontuacoes: pontuacoes(), grade: grade() })
             this.jogoIniciado = true
-            console.log(this.jogoIniciado);
             this.retomarJogo()
 
         },
@@ -81,7 +80,7 @@ export const useArmazenar = defineStore({
             tamanho = this.tamanho,
             grade = this.grade,
             rodada = 0,
-            resolvida = [],
+            resolvido = [],
             tempo = 0,
             selecionarPar = [],
         }) {
@@ -91,9 +90,27 @@ export const useArmazenar = defineStore({
                 tamanho: tamanho,
                 grade: grade,
                 rodada: rodada,
-                resolvida: resolvida,
+                resolvido: resolvido,
                 tempo: tempo,
                 selecionarPar: selecionarPar
+            }
+        },
+        marcarComoResolvido(par) {
+            this.jogoInstancia.resolvido.push(...par)
+            if (this.ehMultiJogador) {
+                this.jogoInstancia.pontuacoes[this.jogoInstancia.rodada] += 1
+            } else {
+                this.jogoInstancia.pontuacoes[0] += 1
+                this.proximaRodada()
+            }
+        },
+        proximaRodada() {
+            if (this.ehMultiJogador) {
+                const ehUltimoJogador = this.jogoInstancia.rodada === this.jogoConfig.jogadores
+                this.jogoInstancia.rodada = ehUltimoJogador ? 0 : this.jogoInstancia.rodada + 1
+
+            } else {
+                this.jogoInstancia.rodada += 1
             }
         }
     }

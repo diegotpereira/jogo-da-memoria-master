@@ -2,7 +2,7 @@
     <div class="flip-box"> 
         <div class="flip-box-inner transition-all duration-500" :class="selecionado || resolvido ? ['flip'] : ['cursor-pointer']">
             <div class="flip-box-front bg-dark-active hover:bg-dark-hover" />
-            <div class="flip-box-back select-none " :class="selecionado ? ['bg-primary-idle'] : ['bg-dark-idle']">
+            <div class="flip-box-back select-none" :class="selecionado ? ['bg-primary-idle'] : ['bg-dark-idle']">
                 <slot></slot>
             </div>
         </div>
