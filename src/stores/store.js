@@ -22,6 +22,7 @@ export const useArmazenar = defineStore({
         ehMultiJogador: (state) => state.jogoInstancia?.pontuacoes?.length > 1,
         getGradeTamanho: (state) => 
            Number(state.config?.tamanho?.opcoes[state.jogoConfig.tamanho].split("x")[0]),
+        ehFimDeJogo: (state) => state.jogoInstancia.resolvido.length === state.jogoInstancia.grade.length
     },
     actions: {
         iniciarJogo() {

@@ -12,12 +12,14 @@
         </div>
         <MultiJogadorPagina v-if="armazenar.ehMultiJogador" />
         <UnicoJogadorPagina v-else />
+        <FimDeJogoPagina v-if="armazenar.ehFimDeJogo" />
     </div>
 </template>
 <script setup>
 import CartaoPagina from './jogo/Cartao.vue'
 import MultiJogadorPagina from './jogo/MultiJogador.vue'
 import UnicoJogadorPagina from './jogo/UnicoJogador.vue'
+import FimDeJogoPagina from './FimDeJogo.vue'
 
 import { useArmazenar } from '@/stores/store'
 import { ref } from 'vue'
